@@ -1,0 +1,66 @@
+<HomeScreen>:
+    name: 'home'
+    canvas.before:
+        Color:
+            rgba: 0.15, 0.15, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    BoxLayout:
+        orientation:'vertical'
+        padding: 20
+        spacing: 10  
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            size_hint: (1, 0.1)
+            id:pathbox
+            Label:
+                text: 'RVGL Install:'
+                size_hint: (.3, 1)
+            Button:
+                id: dropdownbtn
+                text:'Not functional button'
+                on_release: root.installPicker.open(self)
+                size_hint: (.7, 1)
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            size_hint: (1, 0.1)
+            id:carpathbox
+            Label:
+                text: 'Folder with all cars:'
+                size_hint: (.3, 1)
+            TextInput:
+                id: carpath
+                text:'/home/hajducsekb/RVGL/cars/'
+                size_hint: (.7, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
+        BoxLayout:
+            orientation:'horizontal'
+            id: classrow
+            size_hint: (1, 0.05)
+        BoxLayout:
+            orientation:'horizontal'
+            id:checkboxes
+            size_hint: (1, 0.05)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.6)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: carsclear
+                text: 'Remove temporary cars folder'
+                on_press: root.clearCars()
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: gamelaunch
+                text: 'Launch'
+                on_press: root.gameLaunch()
