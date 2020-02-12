@@ -1,0 +1,1 @@
+-sessionlog -tvtime -savereplays -nointro -window

@@ -1,3 +1,4 @@
+#:import Factory kivy.factory.Factory
 <HomeScreen>:
     name: 'home'
     canvas.before:
@@ -9,21 +10,23 @@
             source: 'bg.png'
     BoxLayout:
         orientation:'vertical'
-        padding: 20
+        padding: 10
         spacing: 10  
         BoxLayout:
             orientation:'horizontal'
             padding: 0.02
             size_hint: (1, 0.1)
-            id:pathbox
+            id:rvglpathbox
             Label:
                 text: 'RVGL Install:'
                 size_hint: (.3, 1)
-            Button:
-                id: dropdownbtn
-                text:'Not functional button'
-                on_release: root.installPicker.open(self)
+            TextInput:
+                id: rvinstpath
+                text: root.rvglpath
                 size_hint: (.7, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
         BoxLayout:
             orientation:'horizontal'
             padding: 0.02
@@ -34,29 +37,70 @@
                 size_hint: (.3, 1)
             TextInput:
                 id: carpath
-                text:'/home/hajducsekb/RVGL/cars/'
+                text:root.carpath
                 size_hint: (.7, 1)
                 background_color: 0.7, 0.7, 0.7, 1
                 border: 20, 20, 20, 20
                 cursor_color: 0,0,0,1
         BoxLayout:
             orientation:'horizontal'
+            id: stockclasses
+            size_hint: (1, 0.03)
+            Label:
+                id:stocklabel
+                markup: True
+                text: '[b]BUILT-IN CLASSES[/b]'
+        BoxLayout:
+            orientation:'horizontal'
             id: classrow
             size_hint: (1, 0.05)
         BoxLayout:
             orientation:'horizontal'
-            id:checkboxes
+            id: checkboxes
             size_hint: (1, 0.05)
         BoxLayout:
             orientation:'horizontal'
-            size_hint: (1, 0.6)
+            size_hint: (1, 0.05)
+        BoxLayout:
+            orientation:'horizontal'
+            id: customclasses
+            size_hint: (1, 0.03)
+            Label:
+                markup: True
+                id:customlabel
+                text: '[b]CUSTOM CLASSES[/b]'
+        BoxLayout:
+            orientation:'horizontal'
+            id: customclassrow
+            size_hint: (1, 0.05)
+        BoxLayout:
+            orientation:'horizontal'
+            id: customcheckboxes
+            size_hint: (1, 0.05)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.3)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: settings
+                text: '<<< Settings'
+                on_press: root.GoToSettings()
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: settings
+                text: 'Dev Tools >>>'
+                on_press: root.GoToDev()
         BoxLayout:
             orientation:'horizontal'
             size_hint: (1, 0.1)
             Button:
                 id: carsclear
                 text: 'Remove temporary cars folder'
-                on_press: root.clearCars()
+                on_release: Factory.Confirmal().open()
         BoxLayout:
             orientation:'horizontal'
             size_hint: (1, 0.1)
@@ -64,3 +108,139 @@
                 id: gamelaunch
                 text: 'Launch'
                 on_press: root.gameLaunch()
+                
+<Confirmal@Popup>:
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint: (1, 0.8)
+            text: 'Are you sure you want to remove the cars folder from "' + Factory.HomeScreen().ids.rvinstpath.text + '"?'
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                size_hint: (0.5, 0.2)
+                text: 'No!'
+                on_release: root.dismiss()
+            Button:
+                size_hint: (0.5, 0.2)
+                text: 'Yes, remove!'
+                on_press: Factory.HomeScreen().clearCars()
+                on_release: root.dismiss()
+
+
+<SettingsScreen>:
+    name: 'settings'
+    canvas.before:
+        Color:
+            rgba: 0.15, 0.15, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    BoxLayout:
+        orientation:'vertical'
+        padding: 10
+        spacing: 10  
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            size_hint: (1, 0.1)
+            Label:
+                text: 'Command Line (no Space at beginning):'
+                size_hint: (.4, 1)
+            TextInput:
+                id: launchargtext
+                text: root.rvlaunchargs_local
+                size_hint: (.5, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
+            Button:
+                text: 'Help'
+                on_press: root.cliHelp()
+                size_hint: (.1, 1)
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            Label:
+                text: 'Common ones: -savereplays -sessionlog -nouser -tvtime'
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: home
+                text: 'Home >>>'
+                on_press: root.GoToHome()
+        
+<DevScreen>:
+    name: 'home'
+    canvas.before:
+        Color:
+            rgba: 0.15, 0.15, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    BoxLayout:
+        orientation:'vertical'
+        padding: 10
+        spacing: 10  
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            size_hint: (1, 0.77)
+            id:rvglpathbox
+            Label:
+                text: 'RVGL Dev Install Path:'
+                size_hint: (.3, 1)
+            TextInput:
+                id: devinstall
+                text: Factory.HomeScreen().rvglpath
+                size_hint: (.7, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.03)
+            Label:
+                markup: True
+                text: '[b]Rename track folders:[/b] (replaces strings in root and reversed folders)'
+        BoxLayout:
+            orientation:'horizontal'
+            padding: 0.02
+            size_hint: (1, 0.1)
+            Label:
+                text: 'From:'
+                size_hint: (.15, 1)
+            TextInput:
+                id: renamefrom
+                text: "stones"
+                size_hint: (.25, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
+            Label:
+                text: 'To:'
+                size_hint: (.15, 1)
+            TextInput:
+                id: renameto
+                text: "stones1"
+                size_hint: (.25, 1)
+                background_color: 0.7, 0.7, 0.7, 1
+                border: 20, 20, 20, 20
+                cursor_color: 0,0,0,1
+            Button:
+                id: renamebutton
+                size_hint: (.2, 1)
+                text: "Rename!"
+                on_press: root.renamefolder()
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: home
+                text: 'Home <<<'
+                on_press: root.GoToHome()
+                

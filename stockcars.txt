@@ -1,0 +1,16 @@
+version:20.0211
+Rookies:rc,mite,phat,moss,mud,beatall,volken,tc6,bigvolt,jg6rc
+RookiesIO:991gt3
+RookiesBonus:bendor
+Amateurs:candy,flag,gencar,tc9,tc12,mouse,tc5,jg3loco,tc11
+AmateurIO:991gt3
+AmateurBonus:bendor
+Advanced:tc4,sgt,bossvolt,jg2fulonx,matraxl,tc2,tc3,fone,r5,dino,rotor,tc8
+AdvancedIO:991gt3
+AdvancedBonus:bendor
+Semi-Pro:amw,adeon,jg1jg7,tc7,tc1
+Semi-ProIO:991gt3
+Semi-ProBonus:bendor
+Pro:cougar,pasugo,nga,jg5purpxl,jg4snw35,toyeca
+ProIO:991gt3
+ProBonus:bendor
