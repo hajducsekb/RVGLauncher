@@ -7,6 +7,7 @@ A Linux launcher for Re-Volt Open GL port
 - launch with command line arguments
 - launch only with select class stock cars (this only works for stocks for now, since it's a bit hard to add all foldernames to the list - if you do so, stockcars.txt is there, add folders seperated with commas and without spaces)
 - launch with custom list of cars
+- fix cases!
 
 ### Dependencies
 - python3
@@ -34,7 +35,6 @@ The app uses soft symlinking via bash. (`ln -s`) **This is the reason it is not 
 
 ### Plans
 
-- integrate fix_cases file (could be just a link, since rvgl install has it)
 - manage updates using the official install_rvgl.py (would need to launch app via command line, because install_rvgl.py need confirmation)
 - get symlinking working for tracks as well
 - integrate points calculator?
