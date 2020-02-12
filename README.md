@@ -2,8 +2,9 @@
 A Linux launcher for Re-Volt Open GL port
 
 ### Current features:
-- only stock/dc cars can be used
-- IO site based ratings for launching
+- launch with command line arguments
+- launch only with select class stock cars (this only works for stocks for now, since it's a bit hard to add all foldernames to the list - if you do so, stockcars.txt is there, add folders seperated with commas and without spaces)
+- launch with custom list of cars
 
 ### Dependencies
 - python3
@@ -11,12 +12,28 @@ A Linux launcher for Re-Volt Open GL port
 
 ### Usage
 
-Create one rvgl install where you delete all car folders (or the 'cars' folder itself). Copy this path to the variable in line 31 (in place of MODIFYTOYOURPATH). The "installs" part doesn't matter, since that isn't implemented yet. Run the app by:
-- changing the directory to the project folder (`cd /home/hajducsekb/RVGLauncher-master`, for example)
-- run it with python (in most cases, `python3 rvglauncher.py`)
+You need to create an RVGL install in which you remove the cars folder if you want to use the class based car options. You can also just rename the cars folder to something like "allcars" or ".cars".  Run the app by:
+- changing the directory to the downloaded folder (`cd /home/hajducsekb/RVGLauncher-master`, for example)
+- run it with python (`python3 rvglauncher.py`)
 
-The directory where you store your cars can be linked in the app. This one won't be modified by the Launcher, it only reads it. Don't press the remove button unless you are using a dummy rvgl folder for running the game (since you've deleted the cars folder, you're probably doing this though). 
+The directory where you store your cars should be linked in the app itself (this can be the "allcars" or ".cars" I've mentioned before - for example: /home/hajducsekb/RVGL/.cars). For reference: this path is stored in `carspath.txt`. This one won't be modified by the Launcher, it only gets read. Also set the path to your rvgl install (the one where the executable lies). This is stored in `rvglpath.txt`. The default paths for cars and rvgl are from two different installs of mine - feel free to do this yourself, the cars folder can be anywhere where you store cars.
 
-I may have missed something, in that case sorry.
+On the main screen, stocks are selected by default. Please only use those for now, as IO and bonus don't have the proper lists (you can edit them yourself in the `stockcars.txt`).
 
-Detailed description and more security features against removal of the wrong folder might come later. 
+**Setting up a custom folder list:** If you want to set up a custom list of cars, it's fairly simple to do. There are 3 examples. You need to add each different list in a new line in the `customlists.txt` file. The name of the list comes first - for this, you should use alphabetical and numerical characters, unless you really want to test the app. After the name, there is a colon (`:`). Then, you can list the car folders (don't leave any spaces, unless, it is actually in the folder name). Seperate cars by commas. Feel free to add and remove any as you want, but if you have too many lists, the UI will get really unreadable.
+
+**In-app settings:** In the settings, you can set the Command Line Arguments. There is a help menu, where you can see the ones I thought were most commonly used. These arguments get saved to `launchparams.txt` when you go back to the home screen.
+
+**Dev Tools:** You need to set a custom install for this menu. The only tool available right now is renaming track folders. This renames files in the main track folder and also the files in the reversed subfolder. You can't go back to the Home screen, the function for this only exists in Settings, this will be fixed lol.
+
+### How custom car folders work?
+
+The app uses soft symlinking via bash. (`ln -s`) **This is the reason it is not available on Windows.** The way it works is it creates a link in the rvgl cars folder to the allcars folder you've set. These links only contain information related to the link itself, so they are pretty small in file size. However, since the path becomes the same as if the content was actually there, rvgl (and the whole system) sees it normally. I couldn't find anything similar on Windows/NTFS.
+
+### Plans
+
+- integrate fix_cases file (could be just a link, since rvgl install has it)
+- manage updates using the official install_rvgl.py (would need to launch app via command line, because install_rvgl.py need confirmation)
+- get symlinking working for tracks as well
+
+These are just plans, though, so there's no guarantee whatsoever that they will be implemented. Cheers!
