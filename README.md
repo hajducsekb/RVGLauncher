@@ -1,7 +1,7 @@
 # RVGLauncher
 A Linux launcher for Re-Volt Open GL port
 
-[RVGLauncher Screenshot](https://i.imgur.com/XYUqWsC.png)
+![RVGLauncher Screenshot](https://i.imgur.com/XYUqWsC.png)
 
 ### Current features:
 - launch with command line arguments
