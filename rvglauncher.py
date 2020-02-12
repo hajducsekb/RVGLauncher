@@ -15,6 +15,7 @@ import os
 from shutil import rmtree
 from kivy.config import Config
 import sys
+from pathlib import Path
 
 
 #initial config
@@ -132,6 +133,30 @@ class HomeScreen(Screen):
             rmtree(os.path.join(self.rvglpath, 'cars'))
         else: 
             print(os.path.join(self.rvglpath, 'cars') + ' does not exist.')
+            
+    '''def fixcases(self):
+        self.rvglpath = self.ids.rvinstpath.text
+        os.system(os.path.join(self.rvglpath, 'fix_cases'))'''
+    def fixcases(self):
+        self.rvglpath = self.ids.rvinstpath.text
+        for path in Path(os.path.join(self.rvglpath, 'levels')).rglob('*'):
+            pathlist = str(path).split('/levels/')
+            if pathlist[1] == pathlist[1].lower():
+                pass
+            else:
+                os.rename(os.path.join(self.rvglpath, 'levels', str(pathlist[1])), os.path.join(self.rvglpath, 'levels', str(pathlist[1]).lower()))
+                print('RENAMING TRACK')
+                print(os.path.join(self.rvglpath, 'levels', str(pathlist[1])) + ' TO ' + os.path.join(self.rvglpath, 'levels', str(pathlist[1]).lower()))
+            #print(path)
+        for path in Path(os.path.join(self.rvglpath, 'cars')).rglob('*'):
+            pathlist = str(path).split('/cars/')
+            if pathlist[1] == pathlist[1].lower():
+                pass
+            else:
+                os.rename(os.path.join(self.rvglpath, 'cars', str(pathlist[1])), os.path.join(self.rvglpath, 'cars', str(pathlist[1]).lower()))
+                print('RENAMING CAR')
+                print(os.path.join(self.rvglpath, 'cars', str(pathlist[1])) + ' TO ' + os.path.join(self.rvglpath, 'cars', str(pathlist[1]).lower()))
+            #print(path)
         
     def GoToSettings(self):
         sm.transition.direction = 'right'
@@ -194,6 +219,10 @@ class DevScreen(Screen):
         if os.path.isdir(os.path.join(self.ids.devinstall.text, 'levels', newname, 'reversed')):
             filelist_rev = glob(os.path.join(self.ids.devinstall.text, 'levels', newname, 'reversed', '*'))
             self.rename(filelist_rev, oldname, newname)
+            
+    def GoToHome(self):
+        sm.transition.direction = 'right'
+        sm.current = 'home'
         
         
 # create a dropdown with 10 buttons

@@ -79,7 +79,14 @@
             size_hint: (1, 0.05)
         BoxLayout:
             orientation:'horizontal'
-            size_hint: (1, 0.3)
+            size_hint: (1, 0.2)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, 0.1)
+            Button:
+                id: fixcases
+                text: 'Fix Cases (in cars and levels folders of main install)'
+                on_press: root.fixcases()
         BoxLayout:
             orientation:'horizontal'
             size_hint: (1, 0.1)
@@ -241,6 +248,6 @@
             size_hint: (1, 0.1)
             Button:
                 id: home
-                text: 'Home <<<'
+                text: '<<< Home'
                 on_press: root.GoToHome()
                 
