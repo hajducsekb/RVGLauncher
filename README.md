@@ -51,7 +51,7 @@ The app uses soft symlinking via bash. (`ln -s`) **This is the reason it is not 
 
 ### Plans
 
-- create re-volt.log with timestamps to not get overwritten - this could be done using ">> re-voltTIMESTAMP.log"
+- create re-volt.log with timestamps to not get overwritten - this could be done using "-printlog >> re-voltTIMESTAMP.log"
 - manage updates using the official install_rvgl.py (would need to launch app via command line, because install_rvgl.py need confirmation)
 - get symlinking working for tracks as well
 - integrate points calculator?
