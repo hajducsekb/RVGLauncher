@@ -25,7 +25,7 @@ A Linux launcher for Re-Volt Open GL port
 
 **Dependencies (Debian Based):**
 
-`sudo apt install python3-pip`
+`sudo apt install python3-pip python3`
 
 `pip3 install --user kivy` or `python3 -m pip install --user kivy`
 
