@@ -5,7 +5,7 @@ A Linux launcher for Re-Volt Open GL port
 
 ### Current features:
 - launch with command line arguments
-- launch only with select class stock cars (this only works for stocks for now, since it's a bit hard to add all foldernames to the list - if you do so, stockcars.txt is there, add folders seperated with commas and without spaces)
+- launch with select class stock and/or IO cars only (Bonus doesn't work yet) (**credits to Mr. Burguers for helping me create a list of cars!**)
 - launch with custom list of cars
 - fix cases!
 
