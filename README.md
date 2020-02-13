@@ -13,10 +13,21 @@ A Linux launcher for Re-Volt Open GL port
 - python3
 - kivy
 
+### Installation
+
+`cd [yourchoiceofinstallpath]`
+`git clone https://github.com/hajducsekb/RVGLauncher.git`
+`cd ./RVGLauncher`
+`python3 rvglauncher.py`
+
+**Dependencies (Debian Based):**
+`sudo apt install python3-pip`
+`pip3 install --user kivy` or `python3 -m pip install --user kivy`
+
 ### Usage
 
 You need to create an RVGL install in which you remove the cars folder if you want to use the class based car options. You can also just rename the cars folder to something like "allcars" or ".cars".  Run the app by:
-- changing the directory to the downloaded folder (`cd /home/hajducsekb/RVGLauncher-master`, for example)
+- changing the directory to the downloaded folder (`cd /home/hajducsekb/RVGLauncher`, for example)
 - run it with python (`python3 rvglauncher.py`)
 
 The directory where you store your cars should be linked in the app itself (this can be the "allcars" or ".cars" I've mentioned before - for example: /home/hajducsekb/RVGL/.cars). For reference: this path is stored in `carspath.txt`. This one won't be modified by the Launcher, it only gets read. Also set the path to your rvgl install (the one where the executable lies). This is stored in `rvglpath.txt`. The default paths for cars and rvgl are from two different installs of mine - feel free to do this yourself, the cars folder can be anywhere where you store cars.
