@@ -16,12 +16,17 @@ A Linux launcher for Re-Volt Open GL port
 ### Installation
 
 `cd [yourchoiceofinstallpath]`
+
 `git clone https://github.com/hajducsekb/RVGLauncher.git`
+
 `cd ./RVGLauncher`
+
 `python3 rvglauncher.py`
 
 **Dependencies (Debian Based):**
+
 `sudo apt install python3-pip`
+
 `pip3 install --user kivy` or `python3 -m pip install --user kivy`
 
 ### Usage
