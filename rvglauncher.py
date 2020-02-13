@@ -33,7 +33,7 @@ else:
 carclass = {}
 customcarclass = {}
 with open(os.path.join(workingpath, 'launchparams.txt'), 'r') as pathtxt:
-        rvlaunchargs = StringProperty(pathtxt.read().replace('\n',''))
+        rvlaunchargs = pathtxt.read().replace('\n','')
 
 with open(os.path.join(workingpath, 'stockcars.txt'), 'r') as carlist:
     carcontent = carlist.readlines()
@@ -84,7 +84,7 @@ class HomeScreen(Screen):
             currentItem += 1
             label = Label(text=str(k))
             if currentItem % 3 == 1:
-                checkbox = CheckBox(active=True, background_checkbox_down='stock.png', background_checkbox_normal='stock_inactive.png')
+                checkbox = CheckBox(active=False, background_checkbox_down='stock.png', background_checkbox_normal='stock_inactive.png')
                 self.ids.classrow.add_widget(label)
             elif currentItem % 3 == 2:
                 checkbox = CheckBox(active=False, background_checkbox_down='io.png', background_checkbox_normal='io_inactive.png')
@@ -125,7 +125,7 @@ class HomeScreen(Screen):
         req = ['misc', 'q', 'wincar', 'wincar2', 'wincar3', 'wincar4']
         for car in req:
             os.system('ln -s ' + os.path.join(self.ids.carpath.text, car) + ' ' + os.path.join(self.rvglpath, 'cars', car))
-        os.system(os.path.join(self.rvglpath, 'rvgl -nointro ' + rvlaunchargs))
+        os.system(os.path.join(self.rvglpath, 'rvgl -nointro ' + str(rvlaunchargs)))
 
     def clearCars(self):
         self.rvglpath = self.ids.rvinstpath.text
