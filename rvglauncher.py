@@ -84,17 +84,17 @@ class HomeScreen(Screen):
             currentItem += 1
             label = Label(text=str(k))
             if currentItem % 3 == 1:
-                checkbox = CheckBox(active=False, background_checkbox_down='stock.png', background_checkbox_normal='stock_inactive.png')
+                checkbox = CheckBox(active=False, background_checkbox_down='atlas://rv_checkboxes/stock', background_checkbox_normal='atlas://rv_checkboxes/stock_inactive')
                 self.ids.classrow.add_widget(label)
             elif currentItem % 3 == 2:
-                checkbox = CheckBox(active=False, background_checkbox_down='io.png', background_checkbox_normal='io_inactive.png')
+                checkbox = CheckBox(active=False, background_checkbox_down='atlas://rv_checkboxes/io', background_checkbox_normal='atlas://rv_checkboxes/io_inactive')
             else:
-                checkbox = CheckBox(active=False, background_checkbox_down='bonus.png', background_checkbox_normal='bonus_inactive.png')
+                checkbox = CheckBox(active=False, background_checkbox_down='atlas://rv_checkboxes/bonus', background_checkbox_normal='atlas://rv_checkboxes/bonus_inactive')
             self.ids.checkboxes.add_widget(checkbox)
             self.ClassList.append(checkbox)
         for k, v in customcarclass.items():
             label = Label(text=str(k))
-            checkbox = CheckBox(active=False, background_checkbox_down='custom.png', background_checkbox_normal='custom_inactive.png')
+            checkbox = CheckBox(active=False, background_checkbox_down='atlas://rv_checkboxes/custom', background_checkbox_normal='atlas://rv_checkboxes/custom_inactive')
             self.ids.customclassrow.add_widget(label)
             self.ids.customcheckboxes.add_widget(checkbox)
             self.CustomClassList.append(checkbox)
@@ -126,6 +126,7 @@ class HomeScreen(Screen):
         for car in req:
             os.system('ln -s ' + os.path.join(self.ids.carpath.text, car) + ' ' + os.path.join(self.rvglpath, 'cars', car))
         os.system(os.path.join(self.rvglpath, 'rvgl -nointro ' + str(rvlaunchargs)))
+        self.canvas.ask_update() 
 
     def clearCars(self):
         self.rvglpath = self.ids.rvinstpath.text
