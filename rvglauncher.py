@@ -126,7 +126,6 @@ class HomeScreen(Screen):
         for car in req:
             os.system('ln -s ' + os.path.join(self.ids.carpath.text, car) + ' ' + os.path.join(self.rvglpath, 'cars', car))
         os.system(os.path.join(self.rvglpath, 'rvgl -nointro ' + str(rvlaunchargs)))
-        self.canvas.ask_update() 
 
     def clearCars(self):
         self.rvglpath = self.ids.rvinstpath.text
